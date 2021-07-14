@@ -218,7 +218,7 @@ class ContentLoss(_Loss):
         Returns:
             Normalized input
         """
-        norm_factor = torch.sqrt(torch.sum(x ** 2, dim=1, keepdim=True))
+        norm_factor = torch.sqrt(torch.sum(x ** 2, dim=1, keepdim=True) + EPS)
         return x / (norm_factor + EPS)
 
     def replace_pooling(self, module: torch.nn.Module) -> torch.nn.Module:
